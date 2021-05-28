@@ -1,5 +1,5 @@
 # pyspark_dbscan
-An "Efficient" Implementation of DBSCAN on PySpark
+An Implementation of DBSCAN on PySpark
 
 ```python
 import dbscan
