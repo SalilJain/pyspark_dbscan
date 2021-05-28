@@ -90,7 +90,7 @@ def process(spark, df, epsilon, min_pts, dist, dim, checkpoint_dir, operations=N
     :param operations: class for managing accumulator to calculate number of distance operations
     :return: A dataframe of point id, cluster component and boolean indicator for core point
     """
-    zero = [0] * dim
+    zero = df.rdd.takeSample(False, 1)[0].value
     combine_cluster_rdd = df.rdd.\
         flatMap(__distance_from_pivot(zero, dist, epsilon, operations)). \
         reduceByKey(lambda x, y: x + y).\
