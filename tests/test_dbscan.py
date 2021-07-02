@@ -15,7 +15,7 @@ def get_spark():
     return SparkSession \
         .builder \
         .appName("DBSCAN") \
-        .config("spark.jars.packages", "graphframes:graphframes:0.7.0-spark2.3-s_2.11") \
+        .config("spark.jars.packages", "graphframes:graphframes:0.8.1-spark2.4-s_2.12") \
         .config('spark.driver.host', '127.0.0.1') \
         .getOrCreate()
 
