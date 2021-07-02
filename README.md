@@ -17,6 +17,7 @@ X, labels_true = make_blobs(n_samples=750, centers=centers, cluster_std=0.4, ran
 data = [(i, [float(item) for item in X[i]]) for i in range(X.shape[0])]
 schema = T.StructType([T.StructField("id", T.IntegerType(), False),
                                T.StructField("value", T.ArrayType(T.FloatType()), False)])
-df = spark.createDataFrame(data, schema=schema)
+#please repartition appropriately                            
+df = spark.createDataFrame(data, schema=schema).repartition(10)
 df_clusters = dbscan.process(spark, df, .2, 10, distance.euclidean, 2, "checkpoint")
 ```
