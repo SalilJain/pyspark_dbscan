@@ -10,10 +10,10 @@ from scipy.spatial import distance
 spark = SparkSession \
         .builder \
         .appName("DBSCAN") \
-        .config("spark.jars.packages", "graphframes:graphframes:0.7.0-spark2.3-s_2.11") \
+        .config("spark.jars.packages", "graphframes:graphframes:0.8.1-spark3.0-s_2.12") \
         .config('spark.driver.host', '127.0.0.1') \
         .getOrCreate()
-X, labels_true = make_blobs(n_samples=750, centers=centers, cluster_std=0.4, random_state=5)
+X, labels_true = make_blobs(n_samples=750, centers=None, cluster_std=0.4, random_state=5)
 data = [(i, [float(item) for item in X[i]]) for i in range(X.shape[0])]
 schema = T.StructType([T.StructField("id", T.IntegerType(), False),
                                T.StructField("value", T.ArrayType(T.FloatType()), False)])
